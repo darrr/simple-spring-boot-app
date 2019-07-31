@@ -53,6 +53,13 @@
 			<version>2.1.6.RELEASE</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>3.7.0</version>
+		</dependency>
+
 
 
 
@@ -63,6 +70,22 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<propertyFile>src/main/resources/db/changelog/db.changelog-master.yaml</propertyFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>update</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

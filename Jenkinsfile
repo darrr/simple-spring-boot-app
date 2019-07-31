@@ -15,7 +15,14 @@ pipeline {
 
         stage('Build') {
                     steps {
-                        sh 'mvn -B -DskipTests clean package'
+                        sh '''
+                        mvn liquibase:update
+                        echo "Liquibase updated"
+
+                        mvn -B -DskipTests clean package
+
+
+                        '''
                     }
                 }
     }
