@@ -13,12 +13,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Employee implements Serializable {
     @Id
-    @GeneratedValue(generator = "employee_generator")
-    @SequenceGenerator(
-            name = "employee",
-            sequenceName = "employee_sequence",
-            initialValue = 1000
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "firstname")
