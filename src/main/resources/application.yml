@@ -3,6 +3,9 @@ server:
 
 
 spring:
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
   datasource:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/springapp
@@ -17,6 +20,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: update
 
-
-liquibase:
-  change-log: classpath:db/changelog/db.changelog-master.yaml
