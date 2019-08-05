@@ -7,23 +7,24 @@ pipeline {
     stages {
         stage('Initialize') {
             steps {
-                sh '''
+                bat '''
                     echo "M2_HOME = ${M2_HOME}"
                 '''
             }
         }
 
-        stage('Build') {
-                    steps {
-                        sh '''
-                        mvn liquibase:update
-                        echo "Liquibase updated"
+        stage('Code check') {
+            steps {
+                bat '''
+                mvn clean validate
+                '''
+            }
+        }
 
-                        mvn -B -DskipTests clean package
-
-
-                        '''
-                    }
-                }
+         stage('Database migration') {
+            steps {
+                bat 'mvn liquibase:update'
+            }
+         }
     }
 }
