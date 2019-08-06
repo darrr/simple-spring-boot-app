@@ -5,25 +5,29 @@ pipeline {
         jdk 'jdk8'
     }
     stages {
-        stage('Initialize') {
+        stage('Code check') {
             steps {
-                bat '''
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                sh 'mvn validate'
             }
         }
 
-        stage('Code check') {
+        stage('Test') {
             steps {
-                bat '''
-                mvn clean validate
-                '''
+                sh 'mvn test'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                    mvn clean package
+                    '''
             }
         }
 
          stage('Database migration') {
             steps {
-                bat 'mvn liquibase:update'
+                sh 'mvn liquibase:update'
             }
          }
     }
