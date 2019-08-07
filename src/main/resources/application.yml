@@ -3,8 +3,6 @@ server:
 
 
 spring:
-  liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.yaml
 
   datasource:
     platform: postgres
@@ -20,3 +18,11 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         ddl-auto: update
 
+  application:
+    name: simpleApp
+
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: /my-health-check
+        healthCheckInterval: 20s
