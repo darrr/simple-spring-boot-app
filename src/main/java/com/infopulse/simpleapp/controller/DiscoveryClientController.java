@@ -10,8 +10,8 @@ public class DiscoveryClientController {
 
   @GetMapping("/my-health-check")
   public ResponseEntity<String> myCustomCheck() {
-    String message = "Testing my healh check function";
-    return new ResponseEntity<>(message, HttpStatus.FORBIDDEN);
+    String message = "Testing my health check function";
+    return new ResponseEntity<>(message, HttpStatus.OK);
   }
 
 }
